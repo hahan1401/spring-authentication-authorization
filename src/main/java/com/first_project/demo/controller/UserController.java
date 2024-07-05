@@ -4,9 +4,11 @@ import com.first_project.demo.Entity.User;
 import com.first_project.demo.dto.request.UserCreationRequest;
 import com.first_project.demo.dto.response.ApiResponse;
 import com.first_project.demo.dto.response.UserResponse;
+import com.first_project.demo.repository.RoleRepository;
 import com.first_project.demo.service.UserService;
 import jakarta.validation.Valid;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,11 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 @Slf4j
 public class UserController {
 
-  @Autowired
-  private UserService userService;
+  private final UserService userService;
+  private final RoleRepository roleRepository;
 
   @PostMapping()
   ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {

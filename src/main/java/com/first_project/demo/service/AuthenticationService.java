@@ -29,6 +29,7 @@ import lombok.experimental.NonFinal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -92,7 +93,16 @@ public class AuthenticationService {
 
   private String buildScope(User user) {
     StringJoiner stringJoiner = new StringJoiner(" ");
-    stringJoiner.add(user.getRole());
+    if (!CollectionUtils.isEmpty(user.getRoles())) {
+      user.getRoles().forEach(role -> {
+        stringJoiner.add("ROLE_" + role.getName());
+        if (!CollectionUtils.isEmpty(role.getPermissions())) {
+          role.getPermissions().forEach(permission -> {
+            stringJoiner.add(permission.getName());
+          });
+        }
+      });
+    }
     return stringJoiner.toString();
   }
 }

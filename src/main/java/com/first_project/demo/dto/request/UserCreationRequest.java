@@ -1,5 +1,6 @@
 package com.first_project.demo.dto.request;
 
+import com.first_project.demo.dto.response.RoleResponse;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -19,5 +20,5 @@ public class UserCreationRequest {
     private String firstname;
     private String lastname;
     private LocalDate dob;
-    private String role;
+    private Set<String> roles;
 }
