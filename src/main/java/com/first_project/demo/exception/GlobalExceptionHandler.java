@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @Slf4j
 public class GlobalExceptionHandler {
 
-//  @ExceptionHandler(value = AppException.class)
-//  ResponseEntity<ApiResponse> handlingRuntimeException(AppException exception) {
-//    ErrorCode errorCode = exception.getErrorCode();
-//
-//    log.info("asdasdasdsadsadas=================");
-//
-//    ApiResponse exceptionResponse = new ApiResponse();
-//    exceptionResponse.setCode(errorCode.getCode());
-//    exceptionResponse.setMessage(exception.getMessage());
-//    return ResponseEntity.status(errorCode.getStatusCode()).body(exceptionResponse);
-//  }
+  @ExceptionHandler(value = AppException.class)
+  ResponseEntity<ApiResponse> handlingRuntimeException(AppException exception) {
+    ErrorCode errorCode = exception.getErrorCode();
+
+    log.info("asdasdasdsadsadas=================");
+
+    ApiResponse exceptionResponse = new ApiResponse();
+    exceptionResponse.setCode(errorCode.getCode());
+    exceptionResponse.setMessage(exception.getMessage());
+    return ResponseEntity.status(errorCode.getStatusCode()).body(exceptionResponse);
+  }
 
   @ExceptionHandler(value = MethodArgumentNotValidException.class)
   ResponseEntity<ApiResponse> handlingMethodArgumentNotValidException(
