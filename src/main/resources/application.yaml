@@ -5,12 +5,23 @@ server:
 
 spring:
   datasource:
-    url: "jdbc:mysql://localhost:3306/identity_service"
-    username: root
-    password: hahan
+    url: "jdbc:postgresql://rbsiveackunojygowxth.supabase.co:5432/test"
+    username: hahan1401
+    password: test
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
+
+
+#spring:
+#  datasource:
+#    url: "jdbc:mysql://localhost:3306/identity_service"
+#    username: root
+#    password: hahan
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
 
 jwt:
   signerKey: "ed3ywfmeCHi39mBwk76SNy+hJAMQA+9P1Irg8J+zV/hne3tfHytmC1G74lQWg4aF"
